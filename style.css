@@ -1,0 +1,413 @@
+:root {
+    --red: #e50914;
+    --dark-bg: #000;
+    --dark-card: #181818;
+    --gray-text: #8c8c8c;
+    --white: #fff;
+}
+
+/* Reset Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+.plans-container {
+    width: 95%; 
+    max-width: 1200px;
+    text-align: center;
+}
+
+.plans-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* GRID DE PLANOS ORIGINAIS */
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.plan-card {
+    background: var(--dark-card);
+    padding: 30px 20px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.plan-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.old-price {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--gray-text);
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.price span {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+
+.plan-card ul {
+    list-style: none;
+    margin-bottom: 25px;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.plan-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+    font-size: 0.9rem;
+    color: #e5e5e5;
+}
+
+.btn-plan {
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.btn-plan:hover {
+    background-color: #ff1f1f;
+}
+
+/* DESTAQUES DOS PLANOS */
+.highlight { 
+    border-color: var(--red); 
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+    animation: pulsar-contorno 2.5s infinite ease-in-out;
+}
+
+@keyframes pulsar-contorno {
+    0%, 100% { box-shadow: 0 0 10px rgba(229, 9, 20, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(229, 9, 20, 0.6); }
+}
+
+.badge {
+    background: var(--red);
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 4px;
+    position: absolute;
+    top: -12px;
+    right: 20px;
+}
+
+.promo-text {
+    color: var(--red);
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.ultimate {
+    background: linear-gradient(145deg, #181818, #2c0204);
+    border: 1px solid #444;
+}
+
+/* AJUSTE DEFINITIVO DO CATÁLOGO */
+.catalog-expand {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease; /* Tiramos o max-height da transição para não travar */
+    background: #0a0a0a;
+    margin-top: 40px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.catalog-expand.active {
+    max-height: none; /* Deixa o catálogo crescer o quanto precisar */
+    opacity: 1;
+    padding: 40px 20px;
+    border: 1px solid #222;
+}
+
+/* ORGANIZAÇÃO DAS SEÇÕES */
+.row {
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.row h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--red);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* O SEGREDO: GRADE AUTOMÁTICA QUE QUEBRA LINHA */
+.games-scroll {
+    display: grid;
+    /* Isso cria colunas automáticas que se ajustam à tela */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+}
+
+/* AJUSTE DAS CAPAS */
+.game-item {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.game-item img {
+    width: 100%;
+    height: 210px; /* Altura fixa para manter o padrão */
+    object-fit: cover;
+    border-radius: 6px;
+    border: 3px solid transparent;
+}
+
+/* EFEITO ESPECIAL PARA O TOP 10 (Nesse modo grade) */
+.rank-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.rank-number {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    font-size: 4rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #000;
+    -webkit-text-stroke: 1.5px #fff;
+    z-index: 5;
+    line-height: 1;
+}
+
+/* AJUSTE PARA CELULAR */
+@media (max-width: 480px) {
+    .games-scroll {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 10px;
+    }
+    .game-item img {
+        height: 160px;
+    }
+}
+.checkout-container {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, transparent, #000);
+}
+
+.netflix-btn {
+    background-color: var(--red);
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+}
+
+.netflix-btn:hover {
+    transform: scale(1.05);
+    background-color: #ff1f1f;
+    box-shadow: 0 0 25px var(--red);
+}
+.game-item img {
+    pointer-events: none; /* Isso faz o clique "atravessar" a imagem e ativar a seleção */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 3px solid transparent;
+}
+
+.game-item.selected img {
+    border-color: var(--red) !important;
+    pointer-events: auto; /* Mantém a interação após selecionado */
+}
+/* POPUP MAIOR E COM GRADE DE CAPAS */
+.popup-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: #111;
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid var(--red);
+    text-align: center;
+    max-width: 800px; /* Ficou bem maior */
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(229, 9, 20, 0.6);
+}
+
+.popup-content h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--red);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Grid das capas dentro do resumo */
+.resumo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 35px;
+    justify-items: center;
+}
+
+.resumo-grid img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #333;
+}
+
+.popup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.btn-checkout {
+    background: var(--red);
+    color: #fff;
+    text-decoration: none;
+    padding: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.btn-voltar {
+    background: transparent;
+    color: #aaa;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+.game-item img {
+    pointer-events: none; /* O clique atravessa a imagem e ativa a div */
+}
+.resumo-img {
+    width: 120px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+.game-item img {
+    pointer-events: none; /* Isso garante que o clique "atravesse" a foto e ative a seleção */
+}
+
+/* Garante que o Pop-up apareça por cima de tudo */
+.popup-wrapper {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99999; /* Valor bem alto */
+    justify-content: center;
+    align-items: center;
+}
+/* Garante que o clique funcione nas capas */
+.game-item img {
+    pointer-events: none; 
+}
+
+/* Estilo das capas dentro do Pop-up */
+.resumo-img-pop {
+    width: 110px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 8px;
+    border: 2px solid var(--red);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.popup-wrapper {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
